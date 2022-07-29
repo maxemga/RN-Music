@@ -1,0 +1,94 @@
+import React from 'react';
+import { ScrollView, Text, View } from 'react-native';
+
+export const HomeComponent = () => {
+    return (
+        <ScrollView contentOffset={{ x: 0, y: 100 }}>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <View style={{ height: 100, width: 100, backgroundColor: 'red' }}></View>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+            <Text>fgs</Text>
+        </ScrollView>
+    );
+};
