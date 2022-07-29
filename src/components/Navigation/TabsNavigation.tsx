@@ -6,6 +6,7 @@ import { PodcastIcon } from 'src/components/icons/NavigationIcons/PodcastIcon';
 import { colors, config } from 'src/theme/config';
 import { Screens } from 'src/components/Navigation/NavigationRoutes';
 import { CollectionStackScreen, HomeStackScreen, PodcastStackScreen } from './StackNavigation';
+import { View } from 'react-native';
 
 const Tabs = createBottomTabNavigator();
 
@@ -18,6 +19,7 @@ export const TabsNavigation = () => {
                 options={{
                     tabBarShowLabel: false,
                     headerShown: false,
+
                     tabBarIcon: ({ focused }) => {
                         return focused ? (
                             <HomeIcon

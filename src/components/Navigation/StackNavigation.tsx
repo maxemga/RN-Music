@@ -13,6 +13,7 @@ import { CollectionHeader } from 'src/components/Collection/Header/CollectionHea
 import { TracksComponent } from 'src/components/Collection/Tracks/TracksComponent';
 import { CollectionContainerHeader } from 'src/components/Collection/Header/CollectionContainerHeader';
 import { SearchComponent } from '../Collection/Elements/SearchComponent';
+import { Text } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -26,9 +27,7 @@ export const StackNavigation = () => {
                 <Stack.Group>
                     <Stack.Screen
                         name={Screens.TABS_BOTTOM}
-                        options={{
-                            headerShown: false,
-                        }}
+                        options={{ headerShown: false }}
                         component={TabsNavigation}></Stack.Screen>
                 </Stack.Group>
             </Stack.Navigator>

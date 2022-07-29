@@ -1,95 +1,64 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LupaIcon } from 'src/components/icons/HeaderIcons/LupaIcon';
 import { colors } from 'src/theme/config';
 import styled from 'styled-components/native';
 import { TracksContainer } from './TracksContainer';
-import TrackPlayer, { useProgress, Capability } from 'react-native-track-player';
-import { Text, TouchableOpacity, View } from 'react-native';
+import TrackPlayer, { State } from 'react-native-track-player';
+import { Text, TouchableOpacity } from 'react-native';
+import { useSound } from 'src/hooks/useSound';
 
 export const TracksComponent = () => {
     const [value, setValue] = useState<string>('');
+    const { setUpTrackPlayer, trackPause, trackPlay, trackNext, trackPrevious } = useSound();
     const navigation = useNavigation();
-
-    const setUpTrackPlayer = async () => {
-        await TrackPlayer.setupPlayer();
-        await TrackPlayer.add(tracks);
-    };
 
     const tracks = [
         {
             id: 1,
             url: require('src/components/theWeekend.mp3'),
+            image: require('src/components/icons/Collections/Tracks/weekend.jpeg'),
             title: 'Save Your Tears',
+            artist: 'The Weekend',
         },
         {
             id: 2,
             url: require('src/components/problems.mp3'),
+            image: require('src/components/icons/Collections/Tracks/problems.jpeg'),
             title: '99 problems',
+            artist: 'Kizaru',
+        },
+        {
+            id: 3,
+            url: require('src/components/smuzi.mp3'),
+            image: require('src/components/icons/Collections/Tracks/smuzi.jpeg'),
+            title: 'Смузи',
+            artist: 'The Limba',
         },
     ];
 
-    TrackPlayer.updateOptions({
-        stopWithApp: false,
-        capabilities: [
-            Capability.Play,
-            Capability.Pause,
-            Capability.SkipToNext,
-            Capability.SkipToPrevious,
-        ],
-        compactCapabilities: [
-            Capability.Play,
-            Capability.Pause,
-            Capability.SkipToNext,
-            Capability.SkipToPrevious,
-        ],
-    });
+    useEffect(async () => {
+        setUpTrackPlayer(tracks);
 
-    useEffect(() => {
-        setUpTrackPlayer();
-
-        return () => TrackPlayer.destroy();
+        return function () {
+            TrackPlayer.destroy();
+        };
     }, []);
-
-    const arr = [
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-    ];
 
     return (
         <TracksBlock contentOffset={{ y: 40 }}>
             <TracksBlockContent>
                 <Wrapper>
-                    <TouchableOpacity onPress={() => TrackPlayer.play()}>
-                        <Text>PLAY</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => TrackPlayer.pause()}>
+                    <TouchableOpacity onPress={trackPause}>
                         <Text>PAUSE</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
+                    <TouchableOpacity onPress={trackNext}>
+                        <Text>NEXT</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={trackPrevious}>
+                        <Text>PREV</Text>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => TrackPlayer.skipToNext()}>
                         <Text>NEXT</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => TrackPlayer.skipToPrevious()}>
@@ -97,7 +66,7 @@ export const TracksComponent = () => {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => TrackPlayer.seekTo(20)}>
                         <Text>SKIP 20 sec</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                     <TracksInputBlock onPress={() => navigation.navigate('screen')}>
                         <TracksInputSearch>
@@ -116,8 +85,8 @@ export const TracksComponent = () => {
                     </TracksInputBlock>
                 </Wrapper>
                 <TracksContainers>
-                    {arr.map((el) => {
-                        return <TracksContainer key={Math.random()} />;
+                    {tracks.map((el) => {
+                        return <TracksContainer {...el} key={Math.random()} />;
                     })}
                 </TracksContainers>
             </TracksBlockContent>

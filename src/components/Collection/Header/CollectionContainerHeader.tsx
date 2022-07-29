@@ -6,11 +6,13 @@ import { BurgerIcon } from 'src/components/icons/Collections/Icons/BurgerIcon';
 import { DownloadIcon } from 'src/components/icons/Collections/Icons/DownloadIcon';
 import { PauseIcon } from 'src/components/icons/Collections/Icons/PauseIcon';
 import { PlayIcon } from 'src/components/icons/Collections/Icons/PlayIcon';
+import { useSound } from 'src/hooks/useSound';
 import { colors, config } from 'src/theme/config';
 import styled from 'styled-components/native';
 
 export const CollectionContainerHeader = () => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const { isPlaying, trackPlay, trackPause } = useSound();
+
     const navigation = useNavigation();
 
     const valueScale = useRef(new Animated.Value(1)).current;
@@ -54,7 +56,7 @@ export const CollectionContainerHeader = () => {
                         underlayColor={'none'}
                         onPressIn={onPlay}
                         onPressOut={onPause}
-                        onPress={() => setIsOpen(!isOpen)}>
+                        onPress={() => (isPlaying ? trackPause() : trackPlay())}>
                         <Animated.View
                             style={{
                                 paddingVertical: 16,
@@ -65,13 +67,13 @@ export const CollectionContainerHeader = () => {
                                 flexDirection: 'row',
                                 alignItems: 'center',
                             }}>
-                            {isOpen ? (
+                            {isPlaying ? (
                                 <PauseIcon color={colors.black.default} height={15} width={15} />
                             ) : (
                                 <PlayIcon color={colors.black.default} height={15} width={15} />
                             )}
                             <HeaderContainerPlayButtonTitle>
-                                {isOpen ? 'Pause' : 'Play'}
+                                {isPlaying ? 'Pause' : 'Play'}
                             </HeaderContainerPlayButtonTitle>
                         </Animated.View>
                     </TouchableHighlight>
@@ -126,13 +128,6 @@ const HeaderContainerBottom = styled.View`
     margin-bottom: 10px;
 `;
 
-// const HeaderContainerPlayButton = styled.View`
-//     border-radius: 50px;
-//     // padding: 16px 90px;
-//     background-color: ${colors.yellow.dim};
-//     flex-direction: row;
-//     align-items: center;
-// `;
 const HeaderContainerLine = styled.View`
     background-color: ${colors.silver.bright};
     height: 1px;

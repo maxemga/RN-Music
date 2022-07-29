@@ -1,16 +1,19 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableHighlight, View } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
 import { PointIcon } from 'src/components/icons/Collections/Icons/PointIcon';
+import { useSound } from 'src/hooks/useSound';
 import { colors } from 'src/theme/config';
+import { ITrack } from 'src/types/type';
 import styled from 'styled-components/native';
 
-export const TracksContainer = React.memo(({ id, title = '99 problems' }) => {
+export const TracksContainer: React.FC<ITrack> = React.memo(({ id, title, artist, url, image }) => {
     const navigation = useNavigation();
+    const { trackPlay } = useSound();
+
     return (
-        <TracksContainerBlock
-            underlayColor={colors.silver.opacity}
-            onPress={() => console.log('d')}>
+        <TracksContainerBlock underlayColor={colors.silver.opacity} onPress={trackPlay}>
             <Wrapper>
                 <TracksContainerContent>
                     <TracksContainerContentInfo>
@@ -18,13 +21,13 @@ export const TracksContainer = React.memo(({ id, title = '99 problems' }) => {
                             <View style={{ borderRadius: 5, overflow: 'hidden' }}>
                                 <Image
                                     style={{ height: 50, width: 50, overflow: 'hidden' }}
-                                    source={require('src/components/icons/Collections/Tracks/Logo.jpeg')}
+                                    source={image}
                                 />
                             </View>
                             <TracksContainerInfoTitle>
                                 <TracksContainerInfoTitleName>{title}</TracksContainerInfoTitleName>
                                 <TracksContainerInfoTitleArtist>
-                                    Big Baby Tape
+                                    {artist}
                                 </TracksContainerInfoTitleArtist>
                             </TracksContainerInfoTitle>
                         </TracksContainerInfoImage>
