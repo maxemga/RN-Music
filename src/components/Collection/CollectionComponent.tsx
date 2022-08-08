@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image } from 'react-native';
 import { colors } from 'src/theme/config';
 import styled from 'styled-components/native';
 import { CollectionList } from 'src/components/Collection/CollectionList';
+import TrackPlayer from 'react-native-track-player';
+import { useSound } from 'src/hooks/useSound';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 export const CollectionComponent = () => {
+    const { tracks } = useTypedSelector((state) => state.trackReducer);
+
+    const { setUpTrackPlayer, getCurrentTrack, isPlaying } = useSound();
+
+    async function registerMusic() {
+        setUpTrackPlayer(tracks);
+        return function () {
+            TrackPlayer.destroy();
+        };
+    }
+
+    useEffect(() => {
+        registerMusic();
+    }, []);
     return (
         <CollectionBlock>
             <CollectionContent>

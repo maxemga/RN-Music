@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import TrackPlayer, { Capability, State, usePlaybackState } from 'react-native-track-player';
+import React, { useEffect, useState } from 'react';
+import TrackPlayer, {
+    Capability,
+    State,
+    usePlaybackState,
+    useProgress,
+} from 'react-native-track-player';
 import { ITrack } from 'src/types/type';
+import { useActions } from './useActions';
 
 export const useSound = () => {
+    const { changeTrack, changeTrackPosition } = useActions();
+
     const setUpTrackPlayer = async (tracks: ITrack[]) => {
         await TrackPlayer.setupPlayer();
         await TrackPlayer.add(tracks);
     };
 
     const playerState = usePlaybackState();
+    const progress = useProgress();
     const isPlaying = playerState === State.Playing;
+    const isBuffer = playerState === State.Buffering;
 
     const trackPlay = () => {
         TrackPlayer.play();
@@ -27,22 +37,28 @@ export const useSound = () => {
         TrackPlayer.skipToPrevious();
     };
 
-    const trackChange = () => {};
+    const trackSkip = (position: number) => {
+        TrackPlayer.skip(position);
+    };
 
-    // useEffect(() => {
-    //     toggle(playBackState);
-    // }, [trackPlay, trackPause]);
+    const trackRewind = (value: number) => {
+        TrackPlayer.seekTo(value);
+    };
 
-    // const toggle = async (playBackState) => {
-    //     const currentTrack = await TrackPlayer.getCurrentTrack();
-    //     if (currentTrack != null) {
-    //         if (playBackState == State.Paused) {
-    //             setIsPlaying(false);
-    //         } else {
-    //             setIsPlaying(true);
-    //         }
-    //     }
-    // };
+    const getCurrentTrack = async () => {
+        return await TrackPlayer.getCurrentTrack();
+    };
+
+    const onClickPlay = async () => {
+        let position = await TrackPlayer.getCurrentTrack();
+        changeTrackPosition(position);
+
+        if (isPlaying) {
+            trackPause();
+        } else {
+            trackPlay();
+        }
+    };
 
     TrackPlayer.updateOptions({
         stopWithApp: false,
@@ -51,12 +67,14 @@ export const useSound = () => {
             Capability.Pause,
             Capability.SkipToNext,
             Capability.SkipToPrevious,
+            Capability.PlayFromId,
         ],
         compactCapabilities: [
             Capability.Play,
             Capability.Pause,
             Capability.SkipToNext,
             Capability.SkipToPrevious,
+            Capability.PlayFromId,
         ],
     });
 
@@ -65,8 +83,12 @@ export const useSound = () => {
         trackPause,
         trackPlay,
         isPlaying,
-        trackChange,
+        trackSkip,
         trackNext,
         trackPrevious,
+        getCurrentTrack,
+        onClickPlay,
+        progress,
+        trackRewind,
     };
 };

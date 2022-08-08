@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Animated, TouchableHighlight } from 'react-native';
 import { ArrowIcon } from 'src/components/Elements/ArrowIcon';
 import { BurgerIcon } from 'src/components/icons/Collections/Icons/BurgerIcon';
@@ -11,8 +11,7 @@ import { colors, config } from 'src/theme/config';
 import styled from 'styled-components/native';
 
 export const CollectionContainerHeader = () => {
-    const { isPlaying, trackPlay, trackPause } = useSound();
-
+    const { isPlaying, onClickPlay } = useSound();
     const navigation = useNavigation();
 
     const valueScale = useRef(new Animated.Value(1)).current;
@@ -56,7 +55,7 @@ export const CollectionContainerHeader = () => {
                         underlayColor={'none'}
                         onPressIn={onPlay}
                         onPressOut={onPause}
-                        onPress={() => (isPlaying ? trackPause() : trackPlay())}>
+                        onPress={onClickPlay}>
                         <Animated.View
                             style={{
                                 paddingVertical: 16,

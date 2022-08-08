@@ -10,13 +10,17 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@miblanchard/react-native-slider": "^2.1.0",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
+    "@reduxjs/toolkit": "^1.8.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "react": "18.0.0",
     "react-native": "0.69.2",
-    "react-native-track-player": "^2.2.0-rc4"
+    "react-native-share": "^7.6.6",
+    "react-native-track-player": "^2.2.0-rc4",
+    "react-redux": "^8.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

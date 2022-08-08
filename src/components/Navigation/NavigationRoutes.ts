@@ -6,5 +6,6 @@ export enum Screens {
     COLLECTION_SCREEN_TRACKS = 'CollectionScreenTracks',
     HOME_TAB_SCREEN = 'HomeTabScreen',
     PODCASTS_TAB_SCREEN = 'PodcastsTabScreen',
-    COLLECTION_TAB_SCREEN = 'CollectionTabScreen'
+    COLLECTION_TAB_SCREEN = 'CollectionTabScreen',
+    TRACKS_PLAYER_MODAL = 'TracksPlayerModal'
 }

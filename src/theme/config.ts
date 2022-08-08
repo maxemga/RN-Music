@@ -8,13 +8,15 @@ export const config = {
 
 export const colors = {
     black: {
-        default: '#000000'
+        default: '#000000',
+        opacity: 'rgba(0, 0, 0, 0.8)'
     },
     silver: {
         default: '#7F7F7F',
         dim: '#979797',
         opacity: '#EDEDED',
-        bright: '#efefef'
+        bright: '#efefef',    
+        beige: '#C0BCBB'
     },
     white: {
         default: '#FFFFFF',

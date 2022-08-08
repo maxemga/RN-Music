@@ -13,7 +13,8 @@ import { CollectionHeader } from 'src/components/Collection/Header/CollectionHea
 import { TracksComponent } from 'src/components/Collection/Tracks/TracksComponent';
 import { CollectionContainerHeader } from 'src/components/Collection/Header/CollectionContainerHeader';
 import { SearchComponent } from '../Collection/Elements/SearchComponent';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
+import { TrackPlayerComponent } from '../Collection/Tracks/Modal/TrackPlayerComponent';
 
 const Stack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
@@ -100,6 +101,16 @@ export const CollectionStackScreen = () => {
                     options={{
                         headerShown: false,
                         contentStyle: { backgroundColor: 'transparent' },
+                    }}
+                />
+            </HomeStack.Group>
+            <HomeStack.Group screenOptions={{ presentation: 'fullScreenModal' }}>
+                <HomeStack.Screen
+                    name={Screens.TRACKS_PLAYER_MODAL}
+                    component={TrackPlayerComponent}
+                    options={{
+                        headerShown: false,
+                        contentStyle: { backgroundColor: '#807A77' },
                     }}
                 />
             </HomeStack.Group>
